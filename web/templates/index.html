@@ -1,13 +1,14 @@
+{{define "index.html"}}
 <!DOCTYPE html>
 <html lang="zh">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-<title>首页 - 光年(Light Year Admin)后台管理系统模板</title>
+<title>{{.title}}</title>
 <link rel="icon" href="favicon.ico" type="image/ico">
-<meta name="keywords" content="LightYear,光年,后台模板,后台管理系统,光年HTML模板">
-<meta name="description" content="LightYear是一个基于Bootstrap v3.3.7的后台管理系统的HTML模板。">
-<meta name="author" content="yinqi">
+<meta name="keywords" content="{{.website.keywords}}">
+<meta name="description" content="{{.website.description}}">
+<meta name="author" content="{{.website.author}}">
 <link href="../static/css/bootstrap.min.css" rel="stylesheet">
 <link href="../static/css/materialdesignicons.min.css" rel="stylesheet">
 <link href="../static/css/style.min.css" rel="stylesheet">
@@ -233,3 +234,4 @@
 <script type="text/javascript" src="../static/js/main.min.js"></script>
 </body>
 </html>
+{{end}}

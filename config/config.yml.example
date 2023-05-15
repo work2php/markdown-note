@@ -1,0 +1,9 @@
+APP:
+  NAME: "markdown note"
+  PORT: "8080"
+MD:
+  PATH: "./md"
+WEBSITE:
+  KEYWORDS: "markdown,note,笔记"
+  DESCRIPTION: "markdown note 是一款轻量的Markdown笔记工具，旨在快速构建笔记程序"
+  AUTHOR: "jack&肉丝"
