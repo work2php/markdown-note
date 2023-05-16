@@ -84,7 +84,7 @@ func WebsiteHandler(ctx *gin.Context) {
 		"title":   pkg.Viper.GetString("APP.NAME"),
 		"website": pkg.Viper.GetStringMapString("WEBSITE"),
 		"content": template.HTML(content),
-		"navs":    LoadNavigations(path),
+		"navs":    LoadNavigations(strings.Split(path, "/")),
 	})
 }
 
@@ -120,15 +120,14 @@ func loadArticleContent(fileName string) (content string, err error) {
 	return buf.String(), nil
 }
 
-func LoadNavigations(clickPath string) []common.NavItem {
-	navs := loadNavs(pkg.Viper.GetString("MD.PATH"), clickPath)
-	return navs
+func LoadNavigations(clickPath []string) []common.NavItem {
+	return loadNavs(pkg.Viper.GetString("MD.PATH"), clickPath)
 }
 
-func loadNavs(path, clickPath string) []common.NavItem {
+func loadNavs(path string, clickPath []string) []common.NavItem {
 	fs, err := os.ReadDir(path)
 	if err != nil {
-		log.Fatal()
+		log.Fatal("Read file fail:" + err.Error())
 		return nil
 	}
 
@@ -144,16 +143,16 @@ func loadNavs(path, clickPath string) []common.NavItem {
 			Path: fmt.Sprintf("%s/%s", path, f.Name()),
 		}
 
+		name := strings.Replace(f.Name(), ".md", "", -1)
+		if common.IsInStringSlice(f.Name(), clickPath) {
+			nav.Active = true
+		}
 		if f.IsDir() {
-			nav.Path = fmt.Sprintf("%s/%s", nav.Path, clickPath)
-			nav.Child = loadNavs(path, nav.Path)
+			nav.Path = fmt.Sprintf("%s/%s", nav.Path, name)
+			nav.Child = loadNavs(fmt.Sprintf("%s/%s", path, f.Name()), clickPath)
 		} else {
 			nav.Name = f.Name()
 			nav.IsFile = true
-		}
-
-		if clickPath == nav.Path {
-			nav.Active = true
 		}
 
 		navs = append(navs, nav)
