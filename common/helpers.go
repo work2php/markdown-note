@@ -1,6 +1,11 @@
 package common
 
-import "reflect"
+import (
+	"md_note/pkg"
+	"reflect"
+	"regexp"
+	"strings"
+)
 
 func Empty(val interface{}) bool {
 	if val == nil {
@@ -34,4 +39,11 @@ func IsInStringSlice(need string, rows []string) bool {
 	}
 
 	return false
+}
+
+func BeautifulString(str string) string {
+	reg := regexp.MustCompile(`\d+@`)
+	str = reg.ReplaceAllString(str, "")
+	str = strings.Replace(str, ".md", "", -1)
+	return strings.Replace(str, pkg.Viper.GetString("MD.PATH"), "", -1)
 }

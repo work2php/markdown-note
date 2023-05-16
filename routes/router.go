@@ -14,7 +14,6 @@ import (
 	"md_note/pkg"
 	"net/http"
 	"os"
-	"regexp"
 	"strings"
 )
 
@@ -41,12 +40,9 @@ func registerRouter(router *gin.Engine) {
 		return
 	}
 
-	reg := regexp.MustCompile(`\d+@`)
 	routerMap = make(map[string]string)
 	for _, r := range routes {
-		nr := reg.ReplaceAllString(r, "")
-		nr = strings.Replace(nr, ".md", "", -1)
-		nr = strings.Replace(nr, pkg.Viper.GetString("MD.PATH"), "", -1)
+		nr := common.BeautifulString(r)
 		routerMap[nr] = r
 		router.GET(nr, WebsiteHandler)
 	}
@@ -66,8 +62,7 @@ func WebsiteHandler(ctx *gin.Context) {
 
 	content := loadHomeContent()
 	if path != "/" {
-		filename := fmt.Sprintf("%s.md", path)
-		article, err := loadArticleContent(filename)
+		article, err := loadArticleContent(path)
 		if err != nil {
 			log.Fatal("load article fail :" + err.Error())
 
@@ -97,8 +92,7 @@ func loadHomeContent() string {
 }
 
 func loadArticleContent(fileName string) (content string, err error) {
-	mdPath := pkg.Viper.GetString("MD.PATH")
-	f, err := os.ReadFile(fmt.Sprintf("%s/%s.md", mdPath, fileName))
+	f, err := os.ReadFile(fileName)
 	if err != nil {
 		return
 	}
@@ -139,8 +133,8 @@ func loadNavs(path string, clickPath []string) []common.NavItem {
 		}
 
 		nav := common.NavItem{
-			Name: f.Name(),
-			Path: fmt.Sprintf("%s/%s", path, f.Name()),
+			Name: common.BeautifulString(f.Name()),
+			Path: common.BeautifulString(fmt.Sprintf("%s/%s", path, f.Name())),
 		}
 
 		name := strings.Replace(f.Name(), ".md", "", -1)
@@ -148,7 +142,7 @@ func loadNavs(path string, clickPath []string) []common.NavItem {
 			nav.Active = true
 		}
 		if f.IsDir() {
-			nav.Path = fmt.Sprintf("%s/%s", nav.Path, name)
+			nav.Path = common.BeautifulString(fmt.Sprintf("%s/%s", nav.Path, name))
 			nav.Child = loadNavs(fmt.Sprintf("%s/%s", path, f.Name()), clickPath)
 		} else {
 			nav.Name = f.Name()

@@ -22,8 +22,8 @@
 
             <!-- logo -->
             <div id="logo" class="sidebar-header">
-                <a href="index.html"><img src="../static/images/logo-sidebar.png" title="LightYear"
-                                          alt="LightYear"/></a>
+                <a href="index.html">
+                    <img src="../static/images/logo-sidebar.png" title="LightYear" alt="LightYear"/></a>
             </div>
             <div class="lyear-layout-sidebar-scroll">
 
@@ -33,62 +33,46 @@
                             {{if .IsFile}}
                                 <li class="nav-item {{if .Active}}active{{end}}"><a href="{{.Path}}"> {{.Name}}</a></li>
                             {{else}}
-                            {{if .Child|notEmpty}}
-                            <li><a href="{{.Path}}">{{.Name}}</a></li>
-                            {{else}}
-                            <li class="nav-item nav-item-has-subnav">
+                                <li class="nav-item {{if .Child|notEmpty}}nav-item-has-subnav{{end}}">
                                 <a href="javascript:void(0)"> {{.Name}}</a>
-                                <ul class="nav nav-subnav">
-                                    {{range .Child}}
-                                    {{if .IsFile}}
-                                    <li><a href="{{.Path}}">{{.Name}}</a></li>
-                                    {{else}}
-                                    <li class="nav-item nav-item-has-subnav">
-                                        <a href="javascript:void(0)">{{.Name}}</a>
+                                    {{if .Child|notEmpty}}
                                         <ul class="nav nav-subnav">
                                             {{range .Child}}
-                                            {{if .IsFile}}
-                                            <li><a href="{{.Path}}">{{.Name}}</a></li>
-                                            {{else}}
-                                            <li class="nav-item nav-item-has-subnav">
-                                                <a href="javascript:void(0)">{{.Name}}</a>
-                                                <ul class="nav nav-subnav">
-                                                    {{range .Child}}
-                                                    <li><a href="{{.Path}}">{{.Name}}</a></li>
+                                                {{if .IsFile}}
+                                                    <li class="nav-item {{if .Active}}active{{end}}"><a href="{{.Path}}"> {{.Name}}</a></li>
+                                                {{else}}
+                                                    <li class="nav-item {{if .Child|notEmpty}}nav-item-has-subnav{{end}}">
+                                                    <a href="javascript:void(0)"> {{.Name}}</a>
+                                                    {{if .Child|notEmpty}}
+                                                        <ul class="nav nav-subnav">
+                                                            {{range .Child}}
+                                                                {{if .IsFile}}
+                                                                    <li class="nav-item {{if .Active}}active{{end}}"><a href="{{.Path}}"> {{.Name}}</a></li>
+                                                                {{else}}
+                                                                    <li class="nav-item {{if .Child|notEmpty}}nav-item-has-subnav{{end}}">
+                                                                    <a href="javascript:void(0)"> {{.Name}}</a>
+                                                                        {{if .Child|notEmpty}}
+                                                                            <ul class="nav nav-subnav">
+                                                                            {{range .Child}}
+                                                                                {{if .IsFile}}
+                                                                                    <li class="nav-item {{if .Active}}active{{end}}"><a href="{{.Path}}"> {{.Name}}</a></li>
+                                                                                {{end}}
+                                                                            {{end}}
+                                                                            </ul>
+                                                                        {{end}}
+                                                                    </li>
+                                                                {{end}}
+                                                            {{end}}
+                                                        </ul>
                                                     {{end}}
-                                                </ul>
-                                            </li>
-                                            {{end}}
+                                                    </li>
+                                                {{end}}
                                             {{end}}
                                         </ul>
-                                    </li>
                                     {{end}}
-                                    {{end}}
-                                </ul>
-                            </li>
-                            {{end}}
+                                </li>
                             {{end}}
                         {{end}}
-                        <!--            <li class="nav-item nav-item-has-subnav">-->
-                        <!--              <a href="javascript:void(0)"> 多级菜单</a>-->
-                        <!--              <ul class="nav nav-subnav">-->
-                        <!--                <li> <a href="#!">一级菜单</a> </li>-->
-                        <!--                <li class="nav-item nav-item-has-subnav"> -->
-                        <!--                  <a href="#!">一级菜单</a>-->
-                        <!--                  <ul class="nav nav-subnav">-->
-                        <!--                    <li> <a href="#!">二级菜单</a> </li>-->
-                        <!--                    <li class="nav-item nav-item-has-subnav"> -->
-                        <!--                      <a href="#!">二级菜单</a>-->
-                        <!--                      <ul class="nav nav-subnav">-->
-                        <!--                        <li> <a href="#!">三级菜单</a> </li>-->
-                        <!--                        <li> <a href="#!">三级菜单</a> </li>-->
-                        <!--                      </ul>-->
-                        <!--                    </li>-->
-                        <!--                  </ul>-->
-                        <!--                </li>-->
-                        <!--                <li> <a href="#!">一级菜单</a> </li>-->
-                        <!--              </ul>-->
-                        <!--            </li>-->
                     </ul>
                 </nav>
 
@@ -259,8 +243,10 @@
             <div class="container-fluid">
 
                 <div class="row">
+                    <div class="content">
+                        {{.content}}
+                    </div>
 
-                    sdfdasfsd
                 </div>
 
             </div>
