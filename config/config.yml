@@ -1,10 +1,18 @@
 APP:
   NAME: "markdown note"
-  PORT: "8080"
+  PORT: "9090"
+  HOME_CONTENT: ""
 MD:
   PATH: "./md"
+#  路由忽略文件
+  IGNORE:
+    - "."
+    - ".gitignore"
+    - ".git"
+    - "images"
 WEBSITE:
   KEYWORDS: "markdown,note,笔记"
   DESCRIPTION: "markdown note 是一款轻量的Markdown笔记工具，旨在快速构建笔记程序"
   AUTHOR: "jack&肉丝"
+  ICP: "蜀@123456789"
   
