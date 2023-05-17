@@ -1,11 +1,13 @@
 APP:
   NAME: "Md Note"
   PORT: "9090"
-#  首页欢迎内容，需要自带css样式
+  #  目录缓存更新间隔，单位分钟
+  CACHE: 1
+  #  首页欢迎内容，需要自带css样式
   HOME_CONTENT: ""
 MD:
   PATH: "./md"
-#  路由忽略文件
+  #  路由忽略文件
   IGNORE:
     - "."
     - ".gitignore"

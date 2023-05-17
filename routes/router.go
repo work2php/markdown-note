@@ -15,6 +15,7 @@ import (
 	"net/http"
 	"os"
 	"strings"
+	"time"
 )
 
 const TEMPLATE_404 = "404.html"
@@ -23,8 +24,23 @@ const TEMPLATE_INDEX = "index.html"
 
 var routerMap map[string]string
 
+func init() {
+	routerMap = make(map[string]string)
+}
+
 func AutoRegisterRoute(router *gin.Engine) {
-	registerRouter(router)
+	go func() {
+		defer func() {
+			if err := recover(); err != nil {
+				fmt.Println("recover AutoRegisterRoute \n", err)
+			}
+		}()
+
+		for {
+			registerRouter(router)
+			time.Sleep(time.Duration(pkg.Viper.GetInt("APP.CACHE")) * time.Minute)
+		}
+	}()
 }
 
 func registerRouter(router *gin.Engine) {
@@ -40,11 +56,12 @@ func registerRouter(router *gin.Engine) {
 		return
 	}
 
-	routerMap = make(map[string]string)
 	for _, r := range routes {
 		nr := common.BeautifulString(r)
-		routerMap[nr] = r
-		router.GET(nr, WebsiteHandler)
+		if _, ok := routerMap[nr]; !ok {
+			routerMap[nr] = r
+			router.GET(nr, WebsiteHandler)
+		}
 	}
 }
 
