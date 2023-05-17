@@ -1,6 +1,7 @@
 APP:
-  NAME: "markdown note"
+  NAME: "Md Note"
   PORT: "9090"
+#  首页欢迎内容，需要自带css样式
   HOME_CONTENT: ""
 MD:
   PATH: "./md"

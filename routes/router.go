@@ -84,7 +84,7 @@ func WebsiteHandler(ctx *gin.Context) {
 }
 
 func loadHomeContent() string {
-	content := "<div class=\"home-content\">\n                    <div>欢迎来到 <span style=\"font-size: larger;font-weight: bolder\">" + pkg.Viper.GetString("APP.NAME") + "</span> 的文档管理站</div>\n</div>"
+	content := "<div style=\"width:100%;display:flex;justify-content:center;align-items: center;font-size:30px\">\n                    <div>欢迎来到 <span style=\"font-size: larger;font-weight: bolder\">" + pkg.Viper.GetString("APP.NAME") + "</span> 的文档管理站</div>\n</div>"
 	if welcome := pkg.Viper.GetString("APP.HOME_CONTENT"); welcome != "" {
 		content = welcome
 	}
@@ -145,7 +145,6 @@ func loadNavs(path string, clickPath []string) []common.NavItem {
 			nav.Path = common.BeautifulString(fmt.Sprintf("%s/%s", nav.Path, name))
 			nav.Child = loadNavs(fmt.Sprintf("%s/%s", path, f.Name()), clickPath)
 		} else {
-			nav.Name = f.Name()
 			nav.IsFile = true
 		}
 
