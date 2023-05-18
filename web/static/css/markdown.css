@@ -1,4 +1,4 @@
-.main-content {
+.content {
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
     color: #333;
@@ -9,95 +9,95 @@
     word-wrap: break-word;
 }
 
-.main-content a {
+.content a {
     background: transparent;
 }
 
-.main-content a:active,
-.main-content a:hover {
+.content a:active,
+.content a:hover {
     outline: 0;
 }
 
-.main-content strong {
+.content strong {
     font-weight: bold;
 }
 
-.main-content h1 {
+.content h1 {
     font-size: 2em;
     margin: 0.67em 0;
 }
 
-.main-content img {
+.content img {
     border: 0;
 }
 
-.main-content hr {
+.content hr {
     -moz-box-sizing: content-box;
     box-sizing: content-box;
     height: 0;
 }
 
-.main-content pre {
+.content pre {
     overflow: auto;
 }
 
-.main-content code,
-.main-content kbd,
-.main-content pre {
+.content code,
+.content kbd,
+.content pre {
     font-family: "Meiryo UI", "YaHei Consolas Hybrid", Consolas, "Malgun Gothic", "Segoe UI", "Trebuchet MS", Helvetica, monospace, monospace;
     font-size: 1em;
 }
 
-.main-content input {
+.content input {
     color: inherit;
     font: inherit;
     margin: 0;
 }
 
-.main-content html input[disabled] {
+.content html input[disabled] {
     cursor: default;
 }
 
-.main-content input {
+.content input {
     line-height: normal;
 }
 
-.main-content input[type="checkbox"] {
+.content input[type="checkbox"] {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     padding: 0;
 }
 
-.main-content table {
+.content table {
     border-collapse: collapse;
     border-spacing: 0;
 }
 
-.main-content td,
-.main-content th {
+.content td,
+.content th {
     padding: 0;
 }
 
-.main-content * {
+.content * {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
 
-.main-content input {
+.content input {
     font: 13px/1.4 Helvetica, arial, freesans, clean, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
-.main-content a {
+.content a {
     color: #4183c4;
     text-decoration: none;
 }
 
-.main-content a:hover,
-.main-content a:active {
+.content a:hover,
+.content a:active {
     text-decoration: underline;
 }
 
-.main-content hr {
+.content hr {
     height: 0;
     margin: 15px 0;
     overflow: hidden;
@@ -106,91 +106,91 @@
     border-bottom: 1px solid #ddd;
 }
 
-.main-content hr:before {
+.content hr:before {
     display: table;
     content: "";
 }
 
-.main-content hr:after {
+.content hr:after {
     display: table;
     clear: both;
     content: "";
 }
 
-.main-content h1,
-.main-content h2,
-.main-content h3,
-.main-content h4,
-.main-content h5,
-.main-content h6 {
+.content h1,
+.content h2,
+.content h3,
+.content h4,
+.content h5,
+.content h6 {
     margin-top: 15px;
     margin-bottom: 15px;
     line-height: 1.1;
 }
 
-.main-content h1 {
+.content h1 {
     font-size: 30px;
 }
 
-.main-content h2 {
+.content h2 {
     font-size: 21px;
 }
 
-.main-content h3 {
+.content h3 {
     font-size: 16px;
 }
 
-.main-content h4 {
+.content h4 {
     font-size: 14px;
 }
 
-.main-content h5 {
+.content h5 {
     font-size: 12px;
 }
 
-.main-content h6 {
+.content h6 {
     font-size: 11px;
 }
 
-.main-content blockquote {
+.content blockquote {
     margin: 0;
 }
 
-.main-content ul,
-.main-content ol {
+.content ul,
+.content ol {
     padding: 0;
     margin-top: 0;
     margin-bottom: 0;
 }
 
-.main-content ol ol,
-.main-content ul ol {
+.content ol ol,
+.content ul ol {
     list-style-type: lower-roman;
 }
 
-.main-content ul ul ol,
-.main-content ul ol ol,
-.main-content ol ul ol,
-.main-content ol ol ol {
+.content ul ul ol,
+.content ul ol ol,
+.content ol ul ol,
+.content ol ol ol {
     list-style-type: lower-alpha;
 }
 
-.main-content dd {
+.content dd {
     margin-left: 0;
 }
 
-.main-content code {
+.content code {
     font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
     font-size: 12px;
 }
 
-.main-content pre {
+.content pre {
     margin-top: 0;
     margin-bottom: 0;
     font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
 }
 
-.main-content .octicon {
+.content .octicon {
     font: normal normal 16px octicons-anchor;
     line-height: 1;
     display: inline-block;
@@ -203,19 +203,19 @@
     user-select: none;
 }
 
-.main-content .octicon-link:before {
+.content .octicon-link:before {
     content: '\f05c';
 }
 
-.main-content > *:first-child {
+.content > *:first-child {
     margin-top: 0 !important;
 }
 
-.main-content > *:last-child {
+.content > *:last-child {
     margin-bottom: 0 !important;
 }
 
-.main-content .anchor {
+.content .anchor {
     position: absolute;
     top: 0;
     left: 0;
@@ -225,16 +225,16 @@
     margin-left: -30px;
 }
 
-.main-content .anchor:focus {
+.content .anchor:focus {
     outline: none;
 }
 
-.main-content h1,
-.main-content h2,
-.main-content h3,
-.main-content h4,
-.main-content h5,
-.main-content h6 {
+.content h1,
+.content h2,
+.content h3,
+.content h4,
+.content h5,
+.content h6 {
     position: relative;
     margin-top: 1em;
     margin-bottom: 16px;
@@ -242,134 +242,134 @@
     line-height: 1.4;
 }
 
-.main-content h1 .octicon-link,
-.main-content h2 .octicon-link,
-.main-content h3 .octicon-link,
-.main-content h4 .octicon-link,
-.main-content h5 .octicon-link,
-.main-content h6 .octicon-link {
+.content h1 .octicon-link,
+.content h2 .octicon-link,
+.content h3 .octicon-link,
+.content h4 .octicon-link,
+.content h5 .octicon-link,
+.content h6 .octicon-link {
     display: none;
     color: #000;
     vertical-align: middle;
 }
 
-.main-content h1:hover .anchor,
-.main-content h2:hover .anchor,
-.main-content h3:hover .anchor,
-.main-content h4:hover .anchor,
-.main-content h5:hover .anchor,
-.main-content h6:hover .anchor {
+.content h1:hover .anchor,
+.content h2:hover .anchor,
+.content h3:hover .anchor,
+.content h4:hover .anchor,
+.content h5:hover .anchor,
+.content h6:hover .anchor {
     padding-left: 8px;
     margin-left: -30px;
     text-decoration: none;
 }
 
-.main-content h1:hover .anchor .octicon-link,
-.main-content h2:hover .anchor .octicon-link,
-.main-content h3:hover .anchor .octicon-link,
-.main-content h4:hover .anchor .octicon-link,
-.main-content h5:hover .anchor .octicon-link,
-.main-content h6:hover .anchor .octicon-link {
+.content h1:hover .anchor .octicon-link,
+.content h2:hover .anchor .octicon-link,
+.content h3:hover .anchor .octicon-link,
+.content h4:hover .anchor .octicon-link,
+.content h5:hover .anchor .octicon-link,
+.content h6:hover .anchor .octicon-link {
     display: inline-block;
 }
 
-.main-content h1 {
+.content h1 {
     padding-bottom: 0.3em;
     font-size: 2.25em;
     line-height: 1.2;
     border-bottom: 1px solid #eee;
 }
 
-.main-content h1 .anchor {
+.content h1 .anchor {
     line-height: 1;
 }
 
-.main-content h2 {
+.content h2 {
     padding-bottom: 0.3em;
     font-size: 1.75em;
     line-height: 1.225;
     border-bottom: 1px solid #eee;
 }
 
-.main-content h2 .anchor {
+.content h2 .anchor {
     line-height: 1;
 }
 
-.main-content h3 {
+.content h3 {
     font-size: 1.5em;
     line-height: 1.43;
 }
 
-.main-content h3 .anchor {
+.content h3 .anchor {
     line-height: 1.2;
 }
 
-.main-content h4 {
+.content h4 {
     font-size: 1.25em;
 }
 
-.main-content h4 .anchor {
+.content h4 .anchor {
     line-height: 1.2;
 }
 
-.main-content h5 {
+.content h5 {
     font-size: 1em;
 }
 
-.main-content h5 .anchor {
+.content h5 .anchor {
     line-height: 1.1;
 }
 
-.main-content h6 {
+.content h6 {
     font-size: 1em;
     color: #777;
 }
 
-.main-content h6 .anchor {
+.content h6 .anchor {
     line-height: 1.1;
 }
 
-.main-content p,
-.main-content blockquote,
-.main-content ul,
-.main-content ol,
-.main-content dl,
-.main-content table,
-.main-content pre {
+.content p,
+.content blockquote,
+.content ul,
+.content ol,
+.content dl,
+.content table,
+.content pre {
     margin-top: 0;
     margin-bottom: 16px;
 }
 
 /*
-.main-content hr {
+.content hr {
   height: 4px;
   padding: 0;
   margin: 16px 0;
   background-color: #e7e7e7;
   border: 0 none;
 }*/
-.main-content ul,
-.main-content ol {
+.content ul,
+.content ol {
     padding-left: 2em;
 }
 
-.main-content ul ul,
-.main-content ul ol,
-.main-content ol ol,
-.main-content ol ul {
+.content ul ul,
+.content ul ol,
+.content ol ol,
+.content ol ul {
     margin-top: 0;
     margin-bottom: 0;
 }
 
-.main-content li > p {
+.content li > p {
     margin-top: 16px;
 }
 
-.main-content dl {
+.content dl {
     padding: 0;
 }
 
-.main-content dl dt {
+.content dl dt {
     padding: 0;
     margin-top: 16px;
     font-size: 1em;
@@ -377,26 +377,26 @@
     font-weight: bold;
 }
 
-.main-content dl dd {
+.content dl dd {
     padding: 0 16px;
     margin-bottom: 16px;
 }
 
-.main-content blockquote {
+.content blockquote {
     padding: 0 15px;
     color: #777;
     border-left: 4px solid #ddd;
 }
 
-.main-content blockquote > :first-child {
+.content blockquote > :first-child {
     margin-top: 0;
 }
 
-.main-content blockquote > :last-child {
+.content blockquote > :last-child {
     margin-bottom: 0;
 }
 
-.main-content table {
+.content table {
     display: block;
     width: 100%;
     overflow: auto;
@@ -404,32 +404,32 @@
     word-break: keep-all;
 }
 
-.main-content table th {
+.content table th {
     font-weight: bold;
 }
 
-.main-content table th,
-.main-content table td {
+.content table th,
+.content table td {
     padding: 6px 13px;
     border: 1px solid #ddd;
 }
 
-.main-content table tr {
+.content table tr {
     background-color: #fff;
     border-top: 1px solid #ccc;
 }
 
-.main-content table tr:nth-child(2n) {
+.content table tr:nth-child(2n) {
     background-color: #f8f8f8;
 }
 
-.main-content img {
+.content img {
     max-width: 100%;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
 
-.main-content code {
+.content code {
     padding: 0;
     padding-top: 0.2em;
     padding-bottom: 0.2em;
@@ -439,13 +439,13 @@
     border-radius: 3px;
 }
 
-.main-content code:before,
-.main-content code:after {
+.content code:before,
+.content code:after {
     letter-spacing: -0.2em;
     content: "\00a0";
 }
 
-.main-content pre > code {
+.content pre > code {
     padding: 0;
     margin: 0;
     font-size: 100%;
@@ -455,12 +455,12 @@
     border: 0;
 }
 
-.main-content .highlight {
+.content .highlight {
     margin-bottom: 16px;
 }
 
-.main-content .highlight pre,
-.main-content pre {
+.content .highlight pre,
+.content pre {
     padding: 16px;
     overflow: auto;
     font-size: 85%;
@@ -469,16 +469,16 @@
     border-radius: 3px;
 }
 
-.main-content .highlight pre {
+.content .highlight pre {
     margin-bottom: 0;
     word-break: normal;
 }
 
-.main-content pre {
+.content pre {
     word-wrap: normal;
 }
 
-.main-content pre code {
+.content pre code {
     display: inline;
     max-width: initial;
     padding: 0;
@@ -490,12 +490,12 @@
     border: 0;
 }
 
-.main-content pre code:before,
-.main-content pre code:after {
+.content pre code:before,
+.content pre code:after {
     content: normal;
 }
 
-.main-content kbd {
+.content kbd {
     display: inline-block;
     padding: 3px 5px;
     font-size: 11px;
@@ -509,119 +509,119 @@
     box-shadow: inset 0 -1px 0 #bbb;
 }
 
-.main-content .pl-c {
+.content .pl-c {
     color: #969896;
 }
 
-.main-content .pl-c1,
-.main-content .pl-mdh,
-.main-content .pl-mm,
-.main-content .pl-mp,
-.main-content .pl-mr,
-.main-content .pl-s1 .pl-v,
-.main-content .pl-s3,
-.main-content .pl-sc,
-.main-content .pl-sv {
+.content .pl-c1,
+.content .pl-mdh,
+.content .pl-mm,
+.content .pl-mp,
+.content .pl-mr,
+.content .pl-s1 .pl-v,
+.content .pl-s3,
+.content .pl-sc,
+.content .pl-sv {
     color: #0086b3;
 }
 
-.main-content .pl-e,
-.main-content .pl-en {
+.content .pl-e,
+.content .pl-en {
     color: #795da3;
 }
 
-.main-content .pl-s1 .pl-s2,
-.main-content .pl-smi,
-.main-content .pl-smp,
-.main-content .pl-stj,
-.main-content .pl-vo,
-.main-content .pl-vpf {
+.content .pl-s1 .pl-s2,
+.content .pl-smi,
+.content .pl-smp,
+.content .pl-stj,
+.content .pl-vo,
+.content .pl-vpf {
     color: #333;
 }
 
-.main-content .pl-ent {
+.content .pl-ent {
     color: #63a35c;
 }
 
-.main-content .pl-k,
-.main-content .pl-s,
-.main-content .pl-st {
+.content .pl-k,
+.content .pl-s,
+.content .pl-st {
     color: #a71d5d;
 }
 
-.main-content .pl-pds,
-.main-content .pl-s1,
-.main-content .pl-s1 .pl-pse .pl-s2,
-.main-content .pl-sr,
-.main-content .pl-sr .pl-cce,
-.main-content .pl-sr .pl-sra,
-.main-content .pl-sr .pl-sre,
-.main-content .pl-src {
+.content .pl-pds,
+.content .pl-s1,
+.content .pl-s1 .pl-pse .pl-s2,
+.content .pl-sr,
+.content .pl-sr .pl-cce,
+.content .pl-sr .pl-sra,
+.content .pl-sr .pl-sre,
+.content .pl-src {
     color: #df5000;
 }
 
-.main-content .pl-mo,
-.main-content .pl-v {
+.content .pl-mo,
+.content .pl-v {
     color: #1d3e81;
 }
 
-.main-content .pl-id {
+.content .pl-id {
     color: #b52a1d;
 }
 
-.main-content .pl-ii {
+.content .pl-ii {
     background-color: #b52a1d;
     color: #f8f8f8;
 }
 
-.main-content .pl-sr .pl-cce {
+.content .pl-sr .pl-cce {
     color: #63a35c;
     font-weight: bold;
 }
 
-.main-content .pl-ml {
+.content .pl-ml {
     color: #693a17;
 }
 
-.main-content .pl-mh,
-.main-content .pl-mh .pl-en,
-.main-content .pl-ms {
+.content .pl-mh,
+.content .pl-mh .pl-en,
+.content .pl-ms {
     color: #1d3e81;
     font-weight: bold;
 }
 
-.main-content .pl-mq {
+.content .pl-mq {
     color: #008080;
 }
 
-.main-content .pl-mi {
+.content .pl-mi {
     color: #333;
     font-style: italic;
 }
 
-.main-content .pl-mb {
+.content .pl-mb {
     color: #333;
     font-weight: bold;
 }
 
-.main-content .pl-md,
-.main-content .pl-mdhf {
+.content .pl-md,
+.content .pl-mdhf {
     background-color: #ffecec;
     color: #bd2c00;
 }
 
-.main-content .pl-mdht,
-.main-content .pl-mi1 {
+.content .pl-mdht,
+.content .pl-mi1 {
     background-color: #eaffea;
     color: #55a532;
 }
 
-.main-content .pl-mdr {
+.content .pl-mdr {
     color: #795da3;
     font-weight: bold;
 }
 
-.main-content kbd {
+.content kbd {
     display: inline-block;
     padding: 3px 5px;
     font: 11px Consolas, "Liberation Mono", Menlo, Courier, monospace;
@@ -635,21 +635,21 @@
     box-shadow: inset 0 -1px 0 #bbb;
 }
 
-.main-content .task-list-item {
+.content .task-list-item {
     list-style-type: none;
 }
 
-.main-content .task-list-item + .task-list-item {
+.content .task-list-item + .task-list-item {
     margin-top: 3px;
 }
 
-.main-content .task-list-item input {
+.content .task-list-item input {
     float: left;
     margin: 0.3em 0 0.25em -1.6em;
     vertical-align: middle;
 }
 
-.main-content :checked + .radio-label {
+.content :checked + .radio-label {
     z-index: 1;
     position: relative;
     border-color: #4183c4;
