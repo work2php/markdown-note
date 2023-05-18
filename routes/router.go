@@ -38,13 +38,13 @@ func AutoRegisterRoute(router *gin.Engine) {
 
 		for {
 			registerRouter(router)
-			time.Sleep(time.Duration(pkg.Viper.GetInt("APP.CACHE")) * time.Minute)
+			time.Sleep(time.Duration(pkg.Viper.GetInt("app.cache")) * time.Minute)
 		}
 	}()
 }
 
 func registerRouter(router *gin.Engine) {
-	mdPath := pkg.Viper.GetString("MD.PATH")
+	mdPath := pkg.Viper.GetString("md.path")
 	if mdPath == "" {
 		mdPath = "./md"
 	}
@@ -72,7 +72,7 @@ func WebsiteHandler(ctx *gin.Context) {
 	path, ok := routerMap[qPath]
 	if !ok {
 		ctx.HTML(http.StatusOK, TEMPLATE_404, gin.H{
-			"title": pkg.Viper.GetString("APP.NAME"),
+			"title": pkg.Viper.GetString("app.name"),
 		})
 		return
 	}
@@ -84,7 +84,7 @@ func WebsiteHandler(ctx *gin.Context) {
 			log.Fatal("load article fail :" + err.Error())
 
 			ctx.HTML(http.StatusOK, TEMPLATE_404, gin.H{
-				"title": pkg.Viper.GetString("APP.NAME"),
+				"title": pkg.Viper.GetString("app.name"),
 			})
 			return
 		}
@@ -93,16 +93,16 @@ func WebsiteHandler(ctx *gin.Context) {
 	}
 
 	ctx.HTML(http.StatusOK, TEMPLATE_INDEX, gin.H{
-		"title":   pkg.Viper.GetString("APP.NAME"),
-		"website": pkg.Viper.GetStringMapString("WEBSITE"),
+		"title":   pkg.Viper.GetString("app.name"),
+		"website": pkg.Viper.GetStringMapString("website"),
 		"content": template.HTML(content),
 		"navs":    LoadNavigations(strings.Split(path, "/")),
 	})
 }
 
 func loadHomeContent() string {
-	content := "<div style=\"width:100%;display:flex;justify-content:center;align-items: center;font-size:30px\">\n                    <div>欢迎来到 <span style=\"font-size: larger;font-weight: bolder\">" + pkg.Viper.GetString("APP.NAME") + "</span> 的文档管理站</div>\n</div>"
-	if welcome := pkg.Viper.GetString("APP.HOME_CONTENT"); welcome != "" {
+	content := "<div style=\"width:100%;display:flex;justify-content:center;align-items: center;font-size:30px\">\n                    <div>欢迎来到 <span style=\"font-size: larger;font-weight: bolder\">" + pkg.Viper.GetString("app.name") + "</span> 的文档管理站</div>\n</div>"
+	if welcome := pkg.Viper.GetString("app.home_content"); welcome != "" {
 		content = welcome
 	}
 	return content
@@ -132,7 +132,7 @@ func loadArticleContent(fileName string) (content string, err error) {
 }
 
 func LoadNavigations(clickPath []string) []common.NavItem {
-	return loadNavs(pkg.Viper.GetString("MD.PATH"), clickPath)
+	return loadNavs(pkg.Viper.GetString("md.path"), clickPath)
 }
 
 func loadNavs(path string, clickPath []string) []common.NavItem {
@@ -143,7 +143,7 @@ func loadNavs(path string, clickPath []string) []common.NavItem {
 	}
 
 	navs := make([]common.NavItem, 0)
-	ignore := pkg.Viper.GetStringSlice("MD.IGNORE")
+	ignore := pkg.Viper.GetStringSlice("md.ignore")
 	for _, f := range fs {
 		if common.IsInStringSlice(f.Name(), ignore) {
 			continue
@@ -179,7 +179,7 @@ func loadRoutes(path string) []string {
 	}
 
 	routes := make([]string, 0)
-	ignore := pkg.Viper.GetStringSlice("MD.IGNORE")
+	ignore := pkg.Viper.GetStringSlice("md.ignore")
 	for _, f := range fs {
 		if common.IsInStringSlice(f.Name(), ignore) {
 			continue

@@ -5,16 +5,22 @@ import (
 	"github.com/gin-gonic/gin"
 	"html/template"
 	"md_note/common"
+	"md_note/middlewares"
 	"md_note/pkg"
 	"md_note/routes"
 )
 
 func WebStart() {
-	cfgPath := "./config"
 	// 加载配置文件
-	pkg.LoadViperConfig(cfgPath)
+	pkg.LoadViperConfig("")
 
-	router := gin.Default()
+	// 加载日志
+	pkg.LoadZapLogger()
+
+	//gin.SetMode(gin.ReleaseMode)
+	router := gin.New()
+	router.Use(middlewares.LoggerMiddleware(), middlewares.Recovery())
+
 	router.Static("/static", "./web/static")
 	router.Static("./images", fmt.Sprintf("%s/images", pkg.Viper.GetString("MD_PATH")))
 	router.StaticFile("./favicon.ico", "./favicon.icon")
@@ -23,7 +29,7 @@ func WebStart() {
 
 	// 注册路由
 	routes.AutoRegisterRoute(router)
-	err := router.Run(":" + pkg.Viper.GetString("APP.PORT"))
+	err := router.Run(":" + pkg.Viper.GetString("app.port"))
 	if err != nil {
 		panic("start server fail :" + err.Error())
 	}

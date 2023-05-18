@@ -1,21 +1,38 @@
-APP:
-  NAME: "Md Note"
-  PORT: "9090"
+app:
+  name: "Md Note"
+  port: "9090"
   #  目录缓存更新间隔，单位分钟
-  CACHE: 1
+  cache: 1
   #  首页欢迎内容，需要自带css样式
-  HOME_CONTENT: ""
-MD:
-  PATH: "./md"
+  home_content: ""
+#  运行环境 local production
+  env: "local"
+md:
+  path: "./md"
   #  路由忽略文件
-  IGNORE:
+  ignore:
     - "."
     - ".gitignore"
     - ".git"
     - "images"
-WEBSITE:
-  KEYWORDS: "markdown,note,笔记"
-  DESCRIPTION: "markdown note 是一款轻量的Markdown笔记工具，旨在快速构建笔记程序"
-  AUTHOR: "jack&肉丝"
-  ICP: "蜀@123456789"
+website:
+  keywords: "markdown,note,笔记"
+  description: "markdown note 是一款轻量的Markdown笔记工具，旨在快速构建笔记程序"
+  author: "jack&肉丝"
+  icp: "蜀@123456789"
+log:
+#  日志存放位置
+  path: "./logs"
+#  日志名称
+  name: "md_note.log"
+#  日志等级 debug/info/warn/error
+  level: "debug"
+#  每个日志最大多少M
+  max_size: 1
+#  最大保存日志数
+  max_backups: 2
+#  最多保存多少天
+  max_age: 1
+#  是否压缩
+  compress: false
   

@@ -45,5 +45,5 @@ func BeautifulString(str string) string {
 	reg := regexp.MustCompile(`\d+@`)
 	str = reg.ReplaceAllString(str, "")
 	str = strings.Replace(str, ".md", "", -1)
-	return strings.Replace(str, pkg.Viper.GetString("MD.PATH"), "", -1)
+	return strings.Replace(str, pkg.Viper.GetString("md.path"), "", -1)
 }
