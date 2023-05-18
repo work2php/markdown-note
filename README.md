@@ -1,5 +1,4 @@
-    markdown-note是一款轻量的笔记程序，用于快速构建轻量笔记网站
-
+markdown-note是一款轻量的笔记程序，用于快速构建轻量笔记网站。前端框架采用[光年后台管理模板](http://lyear.itshubao.com/)搭建
 #### 支持平台
 
 > Windows、Linux 、Mac Os 
@@ -31,5 +30,10 @@
 
 > go run main.go   
 
-7. 访问http://localhost:9090,查看效果
+7. 访问 http://localhost:9090 ,查看效果
 
+#### TODO
+
+- markdown文档支持公式及流程图
+- 主题切换
+- markdown文档自动更新
