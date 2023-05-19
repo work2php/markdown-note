@@ -17,7 +17,12 @@ func WebStart() {
 	// 加载日志
 	pkg.LoadZapLogger()
 
-	//gin.SetMode(gin.ReleaseMode)
+	model := gin.ReleaseMode
+	if pkg.IsLocal() {
+		model = gin.DebugMode
+	}
+	gin.SetMode(model)
+
 	router := gin.New()
 	router.Use(middlewares.LoggerMiddleware(), middlewares.Recovery())
 
