@@ -4,10 +4,14 @@ import (
 	"bytes"
 	"fmt"
 	"github.com/gin-gonic/gin"
+	mathjax "github.com/litao91/goldmark-mathjax"
 	"github.com/yuin/goldmark"
+	"github.com/yuin/goldmark-emoji"
 	"github.com/yuin/goldmark/extension"
 	"github.com/yuin/goldmark/parser"
 	"github.com/yuin/goldmark/renderer/html"
+	"go.abhg.dev/goldmark/mermaid"
+	"go.abhg.dev/goldmark/toc"
 	"html/template"
 	"log"
 	"md_note/common"
@@ -115,12 +119,27 @@ func loadArticleContent(fileName string) (content string, err error) {
 	}
 
 	md := goldmark.New(
-		goldmark.WithExtensions(extension.GFM),
+		goldmark.WithExtensions(
+			mathjax.MathJax,
+			extension.GFM,
+			extension.Footnote,
+			extension.DefinitionList,
+			extension.Typographer,
+			emoji.Emoji,
+			extension.Footnote,
+			&toc.Extender{},
+			&mermaid.Extender{
+				RenderMode: mermaid.RenderModeServer, // or RenderModeClient
+			},
+		),
 		goldmark.WithParserOptions(
 			parser.WithAutoHeadingID(),
+			parser.WithBlockParsers(),
 		),
 		goldmark.WithRendererOptions(
 			html.WithHardWraps(),
+			html.WithXHTML(),
+			html.WithUnsafe(),
 		),
 	)
 	var buf bytes.Buffer
