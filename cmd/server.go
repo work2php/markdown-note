@@ -27,7 +27,7 @@ func WebStart() {
 	router.Use(middlewares.LoggerMiddleware(), middlewares.Recovery())
 
 	router.Static("/static", "./web/static")
-	router.Static("./images", fmt.Sprintf("%s/images", pkg.Viper.GetString("MD_PATH")))
+	router.Static("./images", fmt.Sprintf("%s/images", pkg.Viper.GetString("md.path")))
 	router.StaticFile("./favicon.ico", "./favicon.icon")
 	router.SetFuncMap(template.FuncMap{"notEmpty": NotEmpty})
 	router.LoadHTMLGlob("./web/templates/*")
