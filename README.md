@@ -4,6 +4,16 @@ markdown-note是一款轻量的笔记程序，用于快速构建轻量笔记网�
 
 > Windows、Linux 、Mac Os 
 
+#### 效果展示
+
+- markdown文档列表
+
+![markdown 文档](./web/static/img/readme/2.png)
+
+- 显示效果
+
+![显示效果](./web/static/img/readme/1.png)
+
 #### 安装
 
 1. 拉取代码
