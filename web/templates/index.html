@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
     <title>{{.title}}</title>
-    <link rel="icon" href="../static/images/favicon.ico" type="image/ico">
+    <link rel="icon" href="/static/img/favicon.ico" type="image/ico">
     <meta name="keywords" content="{{.website.keywords}}">
     <meta name="description" content="{{.website.description}}">
     <meta name="author" content="{{.website.author}}">
@@ -40,23 +40,23 @@
                                         <ul class="nav nav-subnav">
                                             {{range .Child}}
                                                 {{if .IsFile}}
-                                                    <li class="nav-item {{if .Active}}active{{end}}"><a href="{{.Path}}"> {{.Name}}</a></li>
+                                                    <li class="nav-item {{if .Active}}active{{end}}"><a href="{{.Path}}" style="margin-left: 10px"> {{.Name}}</a></li>
                                                 {{else}}
                                                     <li class="nav-item nav-item-has-subnav {{if .Active}}open{{end}}">
-                                                    <a href="javascript:void(0)"> {{.Name}}</a>
+                                                    <a href="javascript:void(0)" style="margin-left: 10px"> {{.Name}}</a>
                                                     {{if .Child|notEmpty}}
                                                         <ul class="nav nav-subnav">
                                                             {{range .Child}}
                                                                 {{if .IsFile}}
-                                                                    <li class="nav-item {{if .Active}}active{{end}}"><a href="{{.Path}}"> {{.Name}}</a></li>
+                                                                    <li class="nav-item {{if .Active}}active{{end}}"><a href="{{.Path}}" style="margin-left: 20px"> {{.Name}}</a></li>
                                                                 {{else}}
                                                                     <li class="nav-item nav-item-has-subnav {{if .Active}}open{{end}}">
-                                                                    <a href="javascript:void(0)"> {{.Name}}</a>
+                                                                    <a href="javascript:void(0)" style="margin-left: 20px"> {{.Name}}</a>
                                                                         {{if .Child|notEmpty}}
                                                                             <ul class="nav nav-subnav">
                                                                             {{range .Child}}
                                                                                 {{if .IsFile}}
-                                                                                    <li class="nav-item {{if .Active}}active{{end}}"><a href="{{.Path}}"> {{.Name}}</a></li>
+                                                                                    <li class="nav-item {{if .Active}}active{{end}}"><a href="{{.Path}}"  style="margin-left: 30px"> {{.Name}}</a></li>
                                                                                 {{end}}
                                                                             {{end}}
                                                                             </ul>

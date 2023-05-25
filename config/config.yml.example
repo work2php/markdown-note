@@ -9,24 +9,27 @@ app:
   env: "local"
 md:
   path: "./md"
+#  是否显示文档目录
+  toc: false
   #  路由忽略文件
   ignore:
     - "."
     - ".gitignore"
     - ".git"
     - "images"
+    - ".idea"
 website:
   keywords: "markdown,note,笔记"
-  description: "markdown note 是一款轻量的Markdown笔记工具，旨在快速构建笔记程序"
+  description: "markdown note 是一款轻量的Markdown笔记工具，旨在快速构建笔记/博客程序"
   author: "jack&肉丝"
   icp: "蜀@123456789"
 log:
 #  日志存放位置
-  path: ""
+  path: "./logs"
 #  日志名称
-  name: "log.log"
+  name: "md_note.log"
 #  日志等级 debug/info/warn/error
-  level: "debug"
+  level: "warn"
 #  每个日志最大多少M
   max_size: 1
 #  最大保存日志数

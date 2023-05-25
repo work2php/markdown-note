@@ -27,9 +27,11 @@ const TEMPLATE_500 = "500.html"
 const TEMPLATE_INDEX = "index.html"
 
 var routerMap map[string]string
+var navs []common.NavItem
 
 func init() {
 	routerMap = make(map[string]string)
+	navs = make([]common.NavItem, 0)
 }
 
 func AutoRegisterRoute(router *gin.Engine) {
@@ -40,40 +42,67 @@ func AutoRegisterRoute(router *gin.Engine) {
 			}
 		}()
 
+		ignore := pkg.Viper.GetStringSlice("md.ignore")
+		mdPath := pkg.Viper.GetString("md.path")
+		routes := map[string]string{"/": "/"}
+
 		for {
-			registerRouter(router)
+			// 加载路由及导航
+			navs = loadRoutesAndNavigations(mdPath, ignore, routes)
+
+			// 注册路由
+			registerRouter(router, routes)
+
 			time.Sleep(time.Duration(pkg.Viper.GetInt("app.cache")) * time.Minute)
 		}
 	}()
 }
 
-func registerRouter(router *gin.Engine) {
-	mdPath := pkg.Viper.GetString("md.path")
-	if mdPath == "" {
-		mdPath = "./md"
+func loadRoutesAndNavigations(path string, ignore []string, routes map[string]string) []common.NavItem {
+	loadNavs := make([]common.NavItem, 0)
+
+	fs, _ := os.ReadDir(path)
+	for _, f := range fs {
+		if common.IsInStringSlice(f.Name(), ignore) {
+			continue
+		}
+
+		nav := common.NavItem{
+			Name: common.BeautifulString(f.Name()),
+			Path: common.BeautifulString(fmt.Sprintf("%s/%s", path, f.Name())),
+		}
+
+		name := strings.Replace(f.Name(), ".md", "", -1)
+		if f.IsDir() {
+			nav.Path = common.BeautifulString(fmt.Sprintf("%s/%s", nav.Path, name))
+			nav.Child = loadRoutesAndNavigations(fmt.Sprintf("%s/%s", path, f.Name()), ignore, routes)
+		} else {
+			nav.IsFile = true
+			router := fmt.Sprintf("%s/%s", path, f.Name())
+			routes[common.BeautifulString(router)] = router
+		}
+
+		loadNavs = append(loadNavs, nav)
 	}
 
-	routes := []string{"/"}
-	routes = append(routes, loadRoutes(mdPath)...)
-	if len(routes) == 0 {
-		log.Fatal("load Routes empty ")
-		return
-	}
+	return loadNavs
+}
 
+func registerRouter(router *gin.Engine, routes map[string]string) {
 	for _, r := range routes {
 		nr := common.BeautifulString(r)
 		if _, ok := routerMap[nr]; !ok {
 			routerMap[nr] = r
-			router.GET(nr, WebsiteHandler)
+			router.GET(nr, websiteHandler)
 		}
 	}
 }
 
-func WebsiteHandler(ctx *gin.Context) {
-	qPath := ctx.FullPath()
+func websiteHandler(ctx *gin.Context) {
+	path := ctx.FullPath()
 
 	// 未找到路由
-	path, ok := routerMap[qPath]
+	filePath, ok := routerMap[path]
 	if !ok {
 		ctx.HTML(http.StatusOK, TEMPLATE_404, gin.H{
 			"title": pkg.Viper.GetString("app.name"),
@@ -83,7 +112,7 @@ func WebsiteHandler(ctx *gin.Context) {
 
 	content := loadHomeContent()
 	if path != "/" {
-		article, err := loadArticleContent(path)
+		article, err := loadArticleContent(filePath)
 		if err != nil {
 			log.Fatal("load article fail :" + err.Error())
 
@@ -100,8 +129,25 @@ func WebsiteHandler(ctx *gin.Context) {
 		"title":   pkg.Viper.GetString("app.name"),
 		"website": pkg.Viper.GetStringMapString("website"),
 		"content": template.HTML(content),
-		"navs":    LoadNavigations(strings.Split(path, "/")),
+		"navs":    loadActiveRoutes(navs, strings.Split(path, "/")),
 	})
+}
+
+func loadActiveRoutes(navItems []common.NavItem, clickPath []string) []common.NavItem {
+	nvs := make([]common.NavItem, len(navItems))
+	for i, item := range navItems {
+		if common.IsInStringSlice(item.Name, clickPath) {
+			item.Active = true
+
+			if item.Child != nil {
+				item.Child = loadActiveRoutes(item.Child, clickPath)
+			}
+		}
+
+		nvs[i] = item
+	}
+
+	return nvs
 }
 
 func loadHomeContent() string {
@@ -118,20 +164,28 @@ func loadArticleContent(fileName string) (content string, err error) {
 		return
 	}
 
+	ext := []goldmark.Extender{
+		mathjax.MathJax,
+		extension.GFM,
+		extension.Footnote,
+		extension.DefinitionList,
+		extension.Typographer,
+		emoji.Emoji,
+		extension.Footnote,
+		&mermaid.Extender{
+			RenderMode: mermaid.RenderModeServer, // or RenderModeClient
+		},
+	}
+
+	if pkg.Viper.GetBool("md.toc") {
+		ext = append(ext, &toc.Extender{
+			Title:    "目录", // 目录标题
+			MaxDepth: 5,    // 限制目录的深度
+		})
+	}
+
 	md := goldmark.New(
-		goldmark.WithExtensions(
-			mathjax.MathJax,
-			extension.GFM,
-			extension.Footnote,
-			extension.DefinitionList,
-			extension.Typographer,
-			emoji.Emoji,
-			extension.Footnote,
-			&toc.Extender{},
-			&mermaid.Extender{
-				RenderMode: mermaid.RenderModeServer, // or RenderModeClient
-			},
-		),
+		goldmark.WithExtensions(ext...),
 		goldmark.WithParserOptions(
 			parser.WithAutoHeadingID(),
 			parser.WithBlockParsers(),
@@ -148,67 +202,4 @@ func loadArticleContent(fileName string) (content string, err error) {
 	}
 
 	return buf.String(), nil
-}
-
-func LoadNavigations(clickPath []string) []common.NavItem {
-	return loadNavs(pkg.Viper.GetString("md.path"), clickPath)
-}
-
-func loadNavs(path string, clickPath []string) []common.NavItem {
-	fs, err := os.ReadDir(path)
-	if err != nil {
-		log.Fatal("Read file fail:" + err.Error())
-		return nil
-	}
-
-	navs := make([]common.NavItem, 0)
-	ignore := pkg.Viper.GetStringSlice("md.ignore")
-	for _, f := range fs {
-		if common.IsInStringSlice(f.Name(), ignore) {
-			continue
-		}
-
-		nav := common.NavItem{
-			Name: common.BeautifulString(f.Name()),
-			Path: common.BeautifulString(fmt.Sprintf("%s/%s", path, f.Name())),
-		}
-
-		name := strings.Replace(f.Name(), ".md", "", -1)
-		if common.IsInStringSlice(f.Name(), clickPath) {
-			nav.Active = true
-		}
-		if f.IsDir() {
-			nav.Path = common.BeautifulString(fmt.Sprintf("%s/%s", nav.Path, name))
-			nav.Child = loadNavs(fmt.Sprintf("%s/%s", path, f.Name()), clickPath)
-		} else {
-			nav.IsFile = true
-		}
-
-		navs = append(navs, nav)
-	}
-
-	return navs
-}
-
-func loadRoutes(path string) []string {
-	fs, err := os.ReadDir(path)
-	if err != nil {
-		log.Fatal("load router fail :" + err.Error())
-		return nil
-	}
-
-	routes := make([]string, 0)
-	ignore := pkg.Viper.GetStringSlice("md.ignore")
-	for _, f := range fs {
-		if common.IsInStringSlice(f.Name(), ignore) {
-			continue
-		}
-		if f.IsDir() {
-			routes = append(routes, loadRoutes(fmt.Sprintf("%s/%s", path, f.Name()))...)
-		} else {
-			routes = append(routes, fmt.Sprintf("%s/%s", path, f.Name()))
-		}
-	}
-
-	return routes
 }

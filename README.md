@@ -45,6 +45,51 @@ markdown-note是一款轻量的笔记程序，用于快速构建轻量笔记网�
 
 在Markdown文档中，如果需要插入图片，只需在markdown目录下创建images文件夹，并使用相对路径引入即可
 
+#### NGINX代理配置文件
+
+
+```
+# http 配置
+server {
+    listen      80;
+    listen [::]:80;
+    server_name yourhost.com;
+
+    location / {
+         proxy_pass  http://127.0.0.1:5006;
+         proxy_set_header   Host             $host;
+         proxy_set_header   X-Real-IP        $remote_addr;
+         proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
+     }
+}
+
+# https 配置
+server {
+    listen          443 ssl;
+    listen          80;
+    server_name     yourhost.com;
+    access_log      /var/log/nginx/markdown-note.access.log main;
+
+
+    #证书文件名称
+    ssl_certificate /etc/nginx/certs/yourhost.com_bundle.crt;
+    #私钥文件名称
+    ssl_certificate_key /etc/nginx/certs/yourhost.com.key;
+    ssl_session_timeout 5m;
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:HIGH:!aNULL:!MD5:!RC4:!DHE;
+    ssl_prefer_server_ciphers on;
+
+    location / {
+         proxy_pass  http://127.0.0.1:5006;
+         proxy_set_header   Host             $host;
+         proxy_set_header   X-Real-IP        $remote_addr;
+         proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
+     }
+ }
+```
+
+
 #### TODO
 
 - 记录日志
