@@ -2782,7 +2782,7 @@ dd, dt {
 }
 #logo{
     min-height: 64px;
-    height: 68px;
+    height: 64px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -4552,4 +4552,8 @@ body[data-theme='translucent'] .jconfirm {
 .content{
     width: 90%;
     margin: 20px auto;
+}
+
+.copyright{
+    text-align: center;
 }

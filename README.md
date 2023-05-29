@@ -1,4 +1,6 @@
-markdown-note是一款轻量的笔记程序，用于快速构建轻量笔记网站。前端框架采用[光年后台管理模板](http://lyear.itshubao.com/)搭建
+markdown-note是一款轻量的笔记程序，用于快速构建轻量笔记网站。前端框架采用[光年后台管理模板](http://lyear.itshubao.com/)搭建。
+
+文档目录支持5层
 
 #### 支持平台
 
