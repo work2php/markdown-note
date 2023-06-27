@@ -23,4 +23,5 @@ func LoadViperConfig(path string) {
 	if err != nil {
 		panic("load config fail:" + err.Error())
 	}
+	Viper.WatchConfig()
 }
