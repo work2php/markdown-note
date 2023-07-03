@@ -32,6 +32,9 @@ func WebStart() {
 	router.SetFuncMap(template.FuncMap{"notEmpty": NotEmpty})
 	router.LoadHTMLGlob("./web/templates/*")
 
+	// 更新markdown文档
+	pkg.GitMarkdownData()
+
 	// 注册路由
 	routes.AutoRegisterRoute(router)
 	err := router.Run(":" + pkg.Viper.GetString("app.port"))
