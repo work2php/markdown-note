@@ -14,6 +14,12 @@
     <link href="/static/css/style.min.css" rel="stylesheet">
     <link href="/static/css/markdown.css" rel="stylesheet">
     <link href="/static/css/a11y-light.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" integrity="sha384-GvrOXuhMATgEsSwCs4smul74iXGOixntILdUW9XmUC6+HX0sLNAK3q71HotJqlAn" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js" integrity="sha384-cpW21h6RZv/phavutF+AuVYrr+dA8xD9zs6FwLpaCct6O9ctzYFfFr4dgmgccOTx" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/mathtex-script-type.min.js" integrity="sha384-jiBVvJ8NGGj5n7kJaiWwWp9AjC+Yh8rhZY3GtAX8yU28azcLgoRo4oukO87g7zDT" crossorigin="anonymous"></script>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+            onload="renderMathInElement(document.body);"></script>
 </head>
 
 <body>
@@ -290,6 +296,30 @@
 <script type="text/javascript" src="/static/js/perfect-scrollbar.min.js"></script>
 <script type="text/javascript" src="/static/js/main.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+<!--时序图-->
+<script src="/static/js/webfont.js"></script>
+<script src="/static/js/snap.svg-min.js"></script>
+<script src="/static/js/underscore-min.js"></script>
+<script src="/static/js/sequence-diagram-min.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+            // customised options
+            // • auto-render specific keys, e.g.:
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false},
+                {left: '\\(', right: '\\)', display: false},
+                {left: '\\[', right: '\\]', display: true}
+            ],
+            // • rendering keys, e.g.:
+            throwOnError : false
+        });
+    });
+    $(".diagram").sequenceDiagram({theme: 'hand'});
+</script>
+
 </body>
 </html>
 {{end}}

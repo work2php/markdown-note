@@ -32,15 +32,15 @@ func WebStart() {
 	router.SetFuncMap(template.FuncMap{"notEmpty": NotEmpty})
 	router.LoadHTMLGlob("./web/templates/*")
 
-	// 更新markdown文档
-	pkg.GitMarkdownData()
-
 	// 注册路由
 	routes.AutoRegisterRoute(router)
 	err := router.Run(":" + pkg.Viper.GetString("app.port"))
 	if err != nil {
 		panic("start server fail :" + err.Error())
 	}
+
+	// 更新markdown文档
+	//pkg.GitMarkdownData()
 }
 
 func NotEmpty(val interface{}) bool {

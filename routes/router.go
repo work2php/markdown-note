@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"fmt"
 	"github.com/gin-gonic/gin"
-	mathjax "github.com/litao91/goldmark-mathjax"
 	"github.com/yuin/goldmark"
 	"github.com/yuin/goldmark-emoji"
 	"github.com/yuin/goldmark/extension"
@@ -165,7 +164,6 @@ func loadArticleContent(fileName string) (content string, err error) {
 	}
 
 	ext := []goldmark.Extender{
-		mathjax.MathJax,
 		extension.GFM,
 		extension.Footnote,
 		extension.DefinitionList,
